@@ -1,0 +1,98 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "react-hooks"
+  ],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier/@typescript-eslint",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+   " SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/member-delimiter-style": 0,
+    "react-hooks/rules-of-hooks": "warn",
+    "react-hooks/exhaustive-deps": 0,
+    "import/prefer-default-export": 0,
+    "import/no-unresolved": 0,
+    "react/state-in-constructor": 0,
+    "react/jsx-wrap-multilines": [
+      "error",
+      {
+        "declaration": false,
+        "assignment": false
+      }
+    ],
+    "react/no-unused-prop-types": 0,
+    "react/require-default-props": 0,
+    "react/jsx-props-no-spreading": "off",
+    "react/display-name": 0,
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
+    "no-trailing-spaces": 0,
+    "semi": [
+      "warn",
+      "never"
+    ],
+    "no-console": 0,
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "local"
+      }
+    ],
+    "linebreak-style": 0,
+    "comma-dangle": [
+      "error",
+      {
+        "objects": "never"
+      }
+    ],
+    "no-confusing-arrow": 0,
+    "arrow-parens": 0,
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ],
+    "arrow-body-style": 0,
+    "eol-last": 0,
+    "consistent-return": 0,
+    "import/extensions": 0,
+    "import/no-extraneous-dependencies": 0
+  }
+}
