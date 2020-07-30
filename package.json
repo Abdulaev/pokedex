@@ -8,7 +8,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prettier": "prettier --write src/**/*.{js,jsx,ts,tsx}",
-    "lint": "eslint --max-warnings=0 \"src/**/*.{ts,tsx}\""
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'"
   },
   "husky": {
     "hooks": {
@@ -16,9 +17,11 @@
     }
   },
   "lint-staged": {
-    "*.{js, jsx, ts, tsx}": [
-      "npm run beautify",
-      "npm run lint"
+    "*.{ts,tsx}": [
+      "prettier --write"
+    ],
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix"
     ]
   },
   "eslintConfig": {
@@ -44,10 +47,15 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/react-router-dom": "^5.1.5",
     "mobx-react": "^6.2.5",
+    "query-string": "^6.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "styled-components": "^5.1.1",
     "typescript": "~3.7.2"
   },
   "devDependencies": {

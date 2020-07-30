@@ -40,6 +40,8 @@
     "react-hooks/rules-of-hooks": "warn",
     "react-hooks/exhaustive-deps": 0,
     "import/prefer-default-export": 0,
+    "implicit-arrow-linebreak": 0,
+    "indent": 0,
     "import/no-unresolved": 0,
     "react/state-in-constructor": 0,
     "react/jsx-wrap-multilines": [
@@ -50,6 +52,7 @@
       }
     ],
     "react/no-unused-prop-types": 0,
+    "react/prop-types": 0,
     "react/require-default-props": 0,
     "react/jsx-props-no-spreading": "off",
     "react/display-name": 0,
