@@ -1,3 +1,4 @@
-export enum routes {
-  pokemons = '/pokemons'
+export enum ROUTES {
+  pokemons = '/pokemons',
+  pokemon = '/pokemon/:id'
 }

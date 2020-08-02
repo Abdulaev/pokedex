@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowSyntheticDefaultImports": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedParameters": true,
@@ -15,7 +19,12 @@
     "strictNullChecks": false,
     "jsx": "react",
     "noEmit": true,
-    "allowJs": true
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "include": [
     "src"

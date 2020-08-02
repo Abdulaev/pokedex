@@ -1,11 +1,11 @@
-import { routes } from 'common/enums/routes'
+import { ROUTES } from 'common/enums'
 import { stringify as stringifyQuery } from 'query-string'
 
 const empty = Symbol('empty')
 type Empty = typeof empty
 
 export const stringifyRoute = <P extends string | Empty, Q extends string | Empty>(
-  route: routes,
+  route: ROUTES,
   params: P extends string ? Record<P, string> : null,
   query: Q extends string ? Partial<Record<Q, string>> : null
 ) =>

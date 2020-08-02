@@ -1,12 +1,21 @@
 import React from 'react'
-import { Switch, Route } from 'react-router'
+import { Switch, Route, Redirect } from 'react-router'
+import { ROUTES } from 'common/enums'
+import { MainLayout, Loader } from 'common/components'
 
-import { routes } from 'common/enums'
+const PokemonsPage = React.lazy(() => import('./Pokemons/Pokemons'))
+const PokemonPage = React.lazy(() => import('./Pokemon/Pokemon'))
 
 export const App = () => {
   return (
-    <Switch>
-      <Route path={routes.pokemons} component={() => <h1>12243</h1>} exact />
-    </Switch>
+    <MainLayout>
+      <React.Suspense fallback={<Loader />}>
+        <Switch>
+          <Route path={ROUTES.pokemons} component={PokemonsPage} exact />
+          <Route path={ROUTES.pokemon} component={PokemonPage} />
+          <Redirect from='*' to={ROUTES.pokemons} />
+        </Switch>
+      </React.Suspense>
+    </MainLayout>
   )
 }

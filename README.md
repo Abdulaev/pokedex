@@ -1,1 +1,1 @@
-Pokedox app
+Pokedex app

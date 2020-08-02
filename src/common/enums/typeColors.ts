@@ -1,0 +1,22 @@
+export enum TYPE_COLORS {
+  normal = 'rgb(72,160,19)',
+  fighting = 'rgb(252,183,81)',
+  flying = 'rgb(105,126,234)',
+  poison = 'rgb(163, 62, 161)',
+  ground = 'rgb(171,103,19)',
+  rock = 'rgb(124,4,20)',
+  bug = 'rgb(221,160,43)',
+  ghost = 'rgb(145,25,135)',
+  steel = 'rgb(181,181,181)',
+  fire = 'rgb(191,74,24)',
+  water = 'rgb(20,46,217)',
+  grass = 'rgb(122, 199, 76)',
+  electric = 'rgb(220,226,20)',
+  psychic = 'rgb(19,202,49)',
+  ice = 'rgb(27,169,226)',
+  dragon = 'rgb(215,14,30)',
+  dark = 'rgb(60,60,60)',
+  fairy = 'rgb(239,255,0)',
+  unknown = 'rgb(136,136,136)',
+  shadow = 'rgb(103,103,103)'
+}
