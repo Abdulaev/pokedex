@@ -6,9 +6,9 @@ interface Params {
 
 const checkStatus = async <T>(response: Response): Promise<T> => {
   if (response?.status >= 200 && response?.status < 300) {
-    const data = await response.json()
+    const data: T = await response.json()
 
-    return data
+    return Promise.resolve(data)
   }
 
   throw new Error()
