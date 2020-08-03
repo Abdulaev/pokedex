@@ -13,7 +13,12 @@ import { FilterBar } from './components/FilterBar/FilterBar'
 import { createPokemonStore } from './Pokemons.store'
 
 const PokemonsPage: React.FC<RouteChildrenProps> = observer(({ location, history }) => {
-  const store = useLocalStore(createPokemonStore, parse(location.search))
+  const parsedQueryParams = parse(location.search)
+
+  const store = useLocalStore(createPokemonStore, {
+    pageNumber: parsedQueryParams?.pageNumber ? Number(parsedQueryParams.pageNumber) : 1,
+    pageLimit: parsedQueryParams?.pageLimit ? Number(parsedQueryParams.pageLimit) : 20
+  })
 
   useEffect(() => {
     store.loadPokemons()
@@ -41,7 +46,7 @@ const PokemonsPage: React.FC<RouteChildrenProps> = observer(({ location, history
         filterByType={store.filterPokemonsByType}
       />
       {store.loading ? <Loader /> : <PokemonList pokemons={store.pokemons} />}
-      {!store.loading && (
+      {(!store.loading || store.pokemonsCount === 0) && (
         <Pagination
           locale={locale}
           total={store.pokemonsCount}
