@@ -15,6 +15,10 @@ export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   min-height: 90px;
+
+  & > img {
+    max-width: 100px;
+  }
 `
 
 export const BodyContainer = styled.div`

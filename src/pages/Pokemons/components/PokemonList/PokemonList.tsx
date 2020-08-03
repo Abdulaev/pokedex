@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
+import EmptyImg from 'assets/images/empty.png'
 import { Card, Image, Tag } from 'common/components'
 import { stringifyRoute } from 'common/helpers'
 import { ROUTES, TYPE_COLORS } from 'common/enums'
@@ -22,7 +23,7 @@ export const PokemonList: React.FC<PokemonListProps> = ({ pokemons }) => {
       {pokemons.map(pokemon => (
         <CardWrapper key={pokemon.id}>
           <Card
-            header={<Image src={pokemon.sprites.front_default} />}
+            header={<Image src={pokemon.sprites.front_default ?? EmptyImg} />}
             onClick={() => handleRedirect(pokemon.id)}
           >
             <h1>{pokemon.name}</h1>

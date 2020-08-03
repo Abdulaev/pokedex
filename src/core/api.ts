@@ -23,7 +23,7 @@ export default class Api {
 
   static async get<T, U>(url: string, params?: Params, body?: U): Promise<T> {
     const query = stringifyQuery(params)
-    const request = new Request(url + query, {
+    const request = new Request(url + (query ? `?${query}` : ''), {
       ...body,
       headers: new Headers({
         Accept: 'application/json'
@@ -35,7 +35,7 @@ export default class Api {
 
   async get<T, U>(url: string, params?: Params, body?: U): Promise<T> {
     const query = stringifyQuery(params)
-    const request = new Request(this.baseUrl + url + query, {
+    const request = new Request(this.baseUrl + url + (query ? `?${query}` : ''), {
       ...body,
       headers: new Headers({
         Accept: 'application/json'

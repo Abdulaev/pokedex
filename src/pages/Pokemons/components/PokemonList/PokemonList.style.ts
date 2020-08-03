@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 16px;
 `
 
 export const CardWrapper = styled.div`
