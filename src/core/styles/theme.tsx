@@ -6,7 +6,7 @@ export const theme = {
     default: 12,
     small: 2
   },
-  color: {
+  colors: {
     lightPink: 'rgb(238,92,85)',
     white: 'white',
     black: 'black'
@@ -17,6 +17,9 @@ export const theme = {
     default: 18,
     small: 16,
     thin: 14
+  },
+  breakPoints: {
+    lg: 1200
   }
 }
 

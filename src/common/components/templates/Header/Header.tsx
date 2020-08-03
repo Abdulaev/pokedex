@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { stringifyRoute } from 'common/helpers'
 import { ROUTES } from 'common/enums'
-import { Container, Title } from './Header.style'
+import { Container, Title, Content } from './Header.style'
 
 export const Header: React.FC = () => {
   const history = useHistory()
@@ -13,7 +13,9 @@ export const Header: React.FC = () => {
 
   return (
     <Container>
-      <Title onClick={handleRedirect}>Pokedex</Title>
+      <Content>
+        <Title onClick={handleRedirect}>Pokedex</Title>
+      </Content>
     </Container>
   )
 }

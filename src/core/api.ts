@@ -21,21 +21,22 @@ export default class Api {
     this.baseUrl = baseUrl
   }
 
-  static async get<T>(url: string, params?: Params): Promise<T> {
+  static async get<T, U>(url: string, params?: Params, body?: U): Promise<T> {
     const query = stringifyQuery(params)
     const request = new Request(url + query, {
+      ...body,
       headers: new Headers({
         Accept: 'application/json'
       })
     })
-
     const response = await fetch(request)
     return checkStatus<T>(response)
   }
 
-  async get<T>(url: string, params?: Params): Promise<T> {
+  async get<T, U>(url: string, params?: Params, body?: U): Promise<T> {
     const query = stringifyQuery(params)
     const request = new Request(this.baseUrl + url + query, {
+      ...body,
       headers: new Headers({
         Accept: 'application/json'
       })

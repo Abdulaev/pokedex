@@ -1,6 +1,12 @@
 import Api from 'core/api'
 import { Pokemon, TRemoteSource } from '@types'
 
+const pokemonsListUrl = 'pokemon'
+
+interface RequestBody {
+  signal: AbortSignal
+}
+
 const ApiBase = new Api(process.env.REACT_APP_URL)
 
 interface LoadPokemonsResult {
@@ -14,12 +20,13 @@ export const createPokemonStore = () => ({
   pokemons: [] as Pokemon[],
   loading: false,
   error: false,
+  abort: new AbortController(),
   loadPokemons() {
     this.loading = true
-    ApiBase.get<LoadPokemonsResult>('pokemon')
+    ApiBase.get<LoadPokemonsResult, RequestBody>(pokemonsListUrl, {}, { signal: this.abort.signal })
       .then(pokemons => {
         this.error = false
-        return Promise.all(pokemons.results.map(pokemon => Api.get<Pokemon>(pokemon.url))).then(
+        return Promise.all(pokemons.results.map(pokemon => Api.get<Pokemon, {}>(pokemon.url))).then(
           res => {
             this.pokemons = res
           }

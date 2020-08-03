@@ -10,6 +10,10 @@ const PokemonsPage: React.FC = observer(() => {
 
   useEffect(() => {
     store.loadPokemons()
+
+    return () => {
+      store.abort.abort()
+    }
   }, [])
 
   return <>{store.loading ? <Loader /> : <PokemonList pokemons={store.pokemons} />}</>

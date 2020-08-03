@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Card, Image, Tag } from 'common/components'
 import { stringifyRoute } from 'common/helpers'
@@ -13,9 +13,9 @@ interface PokemonListProps {
 export const PokemonList: React.FC<PokemonListProps> = ({ pokemons }) => {
   const history = useHistory()
 
-  const handleRedirect = (id: number) => {
+  const handleRedirect = useCallback((id: number) => {
     history.push(stringifyRoute(ROUTES.pokemon, { id: String(id) }, {}))
-  }
+  }, [])
 
   return (
     <Container>
