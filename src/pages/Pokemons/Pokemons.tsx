@@ -55,6 +55,7 @@ const PokemonsPage: React.FC<RouteChildrenProps> = observer(({ location, history
         filterByType={store.filterPokemonsByType}
       />
       {store.loading ? <Loader /> : <PokemonList pokemons={store.pokemons} />}
+      {store.error && <p>Something went wrong... Please reload the page</p>}
       {store.pokemons.length > 0 && !store.loading && (
         <FooterBar
           onPageLimitChange={store.changePageLimit}

@@ -1,6 +1,6 @@
 import React from 'react'
 import Pagination from 'rc-pagination'
-import { locale } from 'core/constants/paginationLocale'
+import { locale } from 'core/constants/locale'
 import { Dropdown } from 'common/components'
 import { Container, DropdownItem } from './FooterBar.style'
 

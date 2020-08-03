@@ -18,7 +18,7 @@ export const Dropdown: React.FC<DropdownProps> = observer(({ children, placehold
 
   return (
     <Container ref={containerRef}>
-      <Panel onClick={store.open} open={store.isOpened}>
+      <Panel onClick={store.toggle} open={store.isOpened}>
         <Label>{placeholder}</Label>
         <ArrowIcon />
       </Panel>

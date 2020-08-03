@@ -1,12 +1,21 @@
-import { Pokemon } from '@types'
+import { Ability, Pokemon } from '@types'
 import Api from 'core/api'
 
 const ApiBase = new Api(process.env.REACT_APP_URL)
 
 const pokemontUrl = 'pokemon/'
 
-export const createPokemonsStore = () => ({
-  pokemon: {} as Pokemon,
+interface PokemonStoreType {
+  pokemon: null | Pokemon
+  abilities: null | Ability[]
+  loading: boolean
+  error: boolean
+  loadPokemon: (id: string) => void
+}
+
+export const createPokemonStore = (): PokemonStoreType => ({
+  pokemon: null,
+  abilities: null,
   loading: false,
   error: false,
   loadPokemon(id: string) {
@@ -14,9 +23,14 @@ export const createPokemonsStore = () => ({
     ApiBase.get<Pokemon, {}>(pokemontUrl + id)
       .then(pokemon => {
         this.pokemon = pokemon
+        return Promise.all(pokemon.abilities.map(i => Api.get<Ability, {}>(i.ability.url))).then(
+          abilities => {
+            this.abilities = abilities
+          }
+        )
       })
       .catch(() => {
-        this.pokemon = {} as Pokemon
+        this.pokemon = null
         this.error = true
       })
       .finally(() => {
@@ -25,4 +39,4 @@ export const createPokemonsStore = () => ({
   }
 })
 
-export type TPokemonStore = ReturnType<typeof createPokemonsStore>
+export type TPokemonStore = ReturnType<typeof createPokemonStore>

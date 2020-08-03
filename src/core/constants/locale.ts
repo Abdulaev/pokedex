@@ -11,3 +11,5 @@ export const locale = {
   prev_5: 'Previous 5 Pages',
   prev_page: 'Previous Page'
 }
+
+export const EN_LANG = 'en'

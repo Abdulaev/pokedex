@@ -5,5 +5,8 @@ export const createDropdownStore = () => ({
   },
   open() {
     this.isOpened = true
+  },
+  toggle() {
+    this.isOpened = !this.isOpened
   }
 })

@@ -45,6 +45,7 @@ export interface PokemonTypes {
 export interface Abilities extends TRemoteSource {
   is_hidden: boolean
   slot: number
+  ability: TRemoteSource
 }
 
 export interface Pokemon {
@@ -69,4 +70,16 @@ export interface Pokemon {
 export type TRemoteSource = {
   name: string
   url: string
+}
+
+interface EffectEntry {
+  effect: string
+  short_effect: string
+  language: TRemoteSource
+}
+
+export interface Ability {
+  name: string
+  effect_entries: EffectEntry[]
+  [key: string]: any
 }
