@@ -6,6 +6,7 @@ import { GlobalStyle } from 'core/styles/global'
 import { App } from 'pages/App.routing'
 
 import 'mobx-react-lite/batchingForReactDom'
+import 'react-widgets/dist/css/react-widgets.css'
 
 const rootEl = document.querySelector('#root')
 

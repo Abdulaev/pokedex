@@ -1,5 +1,5 @@
 import React from 'react'
-import { BodyContainer, Container } from './Card.style'
+import { BodyContainer, Container, HeaderWrapper } from './Card.style'
 
 interface CardProps {
   onClick?: () => void
@@ -10,7 +10,7 @@ interface CardProps {
 export const Card: React.FC<CardProps> = ({ onClick, header, children }: CardProps) => {
   return (
     <Container onClick={onClick}>
-      {header && header}
+      {header && <HeaderWrapper>{header}</HeaderWrapper>}
       <BodyContainer>{children}</BodyContainer>
     </Container>
   )

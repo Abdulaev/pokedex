@@ -3,6 +3,7 @@ import { useLocalStore, observer } from 'mobx-react'
 
 import { Loader } from 'common/components'
 import { PokemonList } from './components/PokemonList/PokemonList'
+import { FilterBar } from './components/FilterBar/FilterBar'
 import { createPokemonStore } from './Pokemons.store'
 
 const PokemonsPage: React.FC = observer(() => {
@@ -16,7 +17,15 @@ const PokemonsPage: React.FC = observer(() => {
     }
   }, [])
 
-  return <>{store.loading ? <Loader /> : <PokemonList pokemons={store.pokemons} />}</>
+  return (
+    <>
+      <FilterBar
+        filterByName={store.filterPokemonsByName}
+        filterByType={store.filterPokemonsByType}
+      />
+      {store.loading ? <Loader /> : <PokemonList pokemons={store.pokemons} />}
+    </>
+  )
 })
 
 export default PokemonsPage

@@ -9,7 +9,8 @@ export const theme = {
   colors: {
     lightPink: 'rgb(238,92,85)',
     white: 'white',
-    black: 'black'
+    black: 'black',
+    lightGray: '#777777d1'
   },
   fontSize: {
     large: 32,

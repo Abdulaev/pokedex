@@ -11,6 +11,12 @@ export const Container = styled.div`
   cursor: pointer;
 `
 
+export const HeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  min-height: 90px;
+`
+
 export const BodyContainer = styled.div`
   margin-top: 5px;
   flex-grow: 1;
