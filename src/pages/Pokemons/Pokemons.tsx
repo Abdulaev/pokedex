@@ -9,12 +9,12 @@ import { ROUTES } from 'common/enums'
 import { PokemonList } from './components/PokemonList/PokemonList'
 import { FooterBar } from './components/FooterBar/FooterBar'
 import { FilterBar } from './components/FilterBar/FilterBar'
-import { createPokemonStore } from './Pokemons.store'
+import { createPokemonsStore } from './Pokemons.store'
 
 const PokemonsPage: React.FC<RouteChildrenProps> = observer(({ location, history }) => {
   const parsedQueryParams = parse(location.search)
 
-  const store = useLocalStore(createPokemonStore, {
+  const store = useLocalStore(createPokemonsStore, {
     pageNumber: parsedQueryParams?.pageNumber ? Number(parsedQueryParams.pageNumber) : 1,
     pageLimit: parsedQueryParams?.pageLimit ? Number(parsedQueryParams.pageLimit) : 20
   })

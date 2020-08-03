@@ -22,7 +22,7 @@ interface PokemonsStoreProps {
   pageNumber: number
 }
 
-export const createPokemonStore = (props: PokemonsStoreProps) => ({
+export const createPokemonsStore = (props: PokemonsStoreProps) => ({
   pokemonsCount: null,
   pagination: {
     pageNumber: props.pageNumber,
@@ -88,4 +88,4 @@ export const createPokemonStore = (props: PokemonsStoreProps) => ({
   }
 })
 
-export type TPokemonStore = ReturnType<typeof createPokemonStore>
+export type TPokemonsStore = ReturnType<typeof createPokemonsStore>

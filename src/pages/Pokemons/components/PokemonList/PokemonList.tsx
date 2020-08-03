@@ -6,7 +6,7 @@ import { stringifyRoute } from 'common/helpers'
 import { ROUTES, TYPE_COLORS } from 'common/enums'
 import { Pokemon } from '@types'
 import {
- CardWrapper, Container, TagList, Name, Description 
+ CardWrapper, Container, TagList, Name 
 } from './PokemonList.style'
 
 interface PokemonListProps {
@@ -22,7 +22,6 @@ export const PokemonList: React.FC<PokemonListProps> = ({ pokemons }) => {
 
   return (
     <Container>
-      {pokemons.length === 0 && <Description>There is no pokemons!</Description>}
       {pokemons.map(pokemon => (
         <CardWrapper key={pokemon.id}>
           <Card
