@@ -21,3 +21,11 @@ export const TagList = styled.div`
     margin: 4px;
   }
 `
+
+export const Name = styled.p`
+  font-size: ${p => p.theme.fontSize.medium}px;
+`
+
+export const Description = styled.h3`
+  font-size: ${p => p.theme.fontSize.large}px;
+`

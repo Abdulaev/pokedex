@@ -20,9 +20,11 @@ export const GlobalStyle = createGlobalStyle`
   
   .rc-pagination {
     display: flex;
+    flex-wrap: wrap;
     width: fit-content;
     list-style: none;
     padding: 0;
+    max-height: 38px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     margin: 0;
     font-size: 14px;
@@ -82,6 +84,7 @@ export const GlobalStyle = createGlobalStyle`
   .rc-pagination-prev button, .rc-pagination-next button {
     padding-bottom: 5px;
     width: 38px;
+    height: 38px;
     border-radius: 2px;
   }
  

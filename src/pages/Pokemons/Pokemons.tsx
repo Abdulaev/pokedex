@@ -2,13 +2,12 @@ import React, { useEffect } from 'react'
 import { parse } from 'query-string'
 import { RouteChildrenProps } from 'react-router-dom'
 import { observer, useLocalStore } from 'mobx-react'
-import Pagination from 'rc-pagination'
-
-import { locale } from 'core/constants/paginationLocale'
+import { reaction } from 'mobx'
 import { stringifyRoute } from 'common/helpers'
 import { Loader } from 'common/components'
 import { ROUTES } from 'common/enums'
 import { PokemonList } from './components/PokemonList/PokemonList'
+import { FooterBar } from './components/FooterBar/FooterBar'
 import { FilterBar } from './components/FilterBar/FilterBar'
 import { createPokemonStore } from './Pokemons.store'
 
@@ -20,6 +19,27 @@ const PokemonsPage: React.FC<RouteChildrenProps> = observer(({ location, history
     pageLimit: parsedQueryParams?.pageLimit ? Number(parsedQueryParams.pageLimit) : 20
   })
 
+  useEffect(
+    () =>
+      reaction(
+        () => ({
+          pageNumber: store.pagination.pageNumber,
+          pageLimit: store.pagination.pageLimit
+        }),
+        () => {
+          history.push(
+            stringifyRoute(
+              ROUTES.pokemons,
+              {},
+              { pageNumber: store.pagination.pageNumber, pageLimit: store.pagination.pageLimit }
+            )
+          )
+          store.loadPokemons()
+        }
+      ),
+    []
+  )
+
   useEffect(() => {
     store.loadPokemons()
 
@@ -28,17 +48,6 @@ const PokemonsPage: React.FC<RouteChildrenProps> = observer(({ location, history
     }
   }, [])
 
-  const handlePaginationChange = (newPage: number) => {
-    store.changePageNumber(newPage)
-    history.push(
-      stringifyRoute(
-        ROUTES.pokemons,
-        {},
-        { pageNumber: store.pagination.pageNumber, pageLimit: store.pagination.pageLimit }
-      )
-    )
-  }
-
   return (
     <>
       <FilterBar
@@ -46,13 +55,13 @@ const PokemonsPage: React.FC<RouteChildrenProps> = observer(({ location, history
         filterByType={store.filterPokemonsByType}
       />
       {store.loading ? <Loader /> : <PokemonList pokemons={store.pokemons} />}
-      {(!store.loading || store.pokemonsCount === 0) && (
-        <Pagination
-          locale={locale}
-          total={store.pokemonsCount}
-          pageSize={store.pagination.pageLimit}
-          onChange={handlePaginationChange}
-          current={Number(store.pagination.pageNumber)}
+      {store.pokemons.length > 0 && !store.loading && (
+        <FooterBar
+          onPageLimitChange={store.changePageLimit}
+          onPaginationChange={store.changePageNumber}
+          currentPage={Number(store.pagination.pageNumber)}
+          totalPages={store.pokemonsCount}
+          pageLimit={store.pagination.pageLimit}
         />
       )}
     </>

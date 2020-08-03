@@ -34,11 +34,11 @@ export const createPokemonStore = (props: PokemonsStoreProps) => ({
   error: false,
   abort: new AbortController(),
   changePageLimit(newLimit: number) {
+    this.pagination.pageNumber = 1
     this.pagination.pageLimit = newLimit
   },
   changePageNumber(newPageNumber: number) {
     this.pagination.pageNumber = newPageNumber
-    this.loadPokemons()
   },
   filterPokemonsByName(query: string) {
     if (query.length === 0) {
