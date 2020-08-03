@@ -7,7 +7,7 @@ type Empty = typeof empty
 export const stringifyRoute = <P extends string | Empty, Q extends string | Empty>(
   route: ROUTES,
   params: P extends string ? Record<P, string> : null,
-  query: Q extends string ? Partial<Record<Q, string>> : null
+  query: Q extends string ? Partial<Record<Q, string | number>> : null
 ) =>
   Object.keys(params).reduce((res, param) => {
     return res.replace(`:${param}`, params[param])

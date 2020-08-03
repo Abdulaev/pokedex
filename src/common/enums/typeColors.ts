@@ -16,7 +16,7 @@ export enum TYPE_COLORS {
   ice = 'rgb(27,169,226)',
   dragon = 'rgb(215,14,30)',
   dark = 'rgb(60,60,60)',
-  fairy = 'rgb(239,255,0)',
+  fairy = 'rgb(196,52,233)',
   unknown = 'rgb(136,136,136)',
   shadow = 'rgb(103,103,103)'
 }

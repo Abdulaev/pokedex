@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react'
-import { useLocalStore, observer } from 'mobx-react'
+import { parse } from 'query-string'
+import { RouteChildrenProps } from 'react-router-dom'
+import { observer, useLocalStore } from 'mobx-react'
 import Pagination from 'rc-pagination'
 
 import { locale } from 'core/constants/paginationLocale'
+import { stringifyRoute } from 'common/helpers'
 import { Loader } from 'common/components'
+import { ROUTES } from 'common/enums'
 import { PokemonList } from './components/PokemonList/PokemonList'
 import { FilterBar } from './components/FilterBar/FilterBar'
 import { createPokemonStore } from './Pokemons.store'
 
-const PokemonsPage: React.FC = observer(() => {
-  const store = useLocalStore(createPokemonStore)
+const PokemonsPage: React.FC<RouteChildrenProps> = observer(({ location, history }) => {
+  const store = useLocalStore(createPokemonStore, parse(location.search))
 
   useEffect(() => {
     store.loadPokemons()
@@ -18,6 +22,17 @@ const PokemonsPage: React.FC = observer(() => {
       store.abort.abort()
     }
   }, [])
+
+  const handlePaginationChange = (newPage: number) => {
+    store.changePageNumber(newPage)
+    history.push(
+      stringifyRoute(
+        ROUTES.pokemons,
+        {},
+        { pageNumber: store.pagination.pageNumber, pageLimit: store.pagination.pageLimit }
+      )
+    )
+  }
 
   return (
     <>
@@ -31,8 +46,8 @@ const PokemonsPage: React.FC = observer(() => {
           locale={locale}
           total={store.pokemonsCount}
           pageSize={store.pagination.pageLimit}
-          onChange={store.changePageNumber}
-          current={store.pagination.pageNumber}
+          onChange={handlePaginationChange}
+          current={Number(store.pagination.pageNumber)}
         />
       )}
     </>

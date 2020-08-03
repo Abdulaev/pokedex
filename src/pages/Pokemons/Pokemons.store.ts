@@ -17,11 +17,16 @@ interface LoadPokemonsResult {
   results: TRemoteSource[]
 }
 
-export const createPokemonStore = () => ({
+interface PokemonsStoreProps {
+  pageLimit?: number
+  pageNumber?: number
+}
+
+export const createPokemonStore = (props: PokemonsStoreProps) => ({
   pokemonsCount: null,
   pagination: {
-    pageNumber: 1,
-    pageLimit: 20
+    pageNumber: props.pageNumber ?? 1,
+    pageLimit: props.pageLimit ?? 20
   },
   pokemons: [] as Pokemon[],
   defaultPokemons: [] as Pokemon[],
