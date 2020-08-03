@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 320px;
-  margin-left: 4px;
+  margin: 12px 4px;
 
   & > input {
     margin-bottom: 12px;

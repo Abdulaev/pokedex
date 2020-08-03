@@ -7,7 +7,8 @@ export const Container = styled.div`
 `
 
 export const CardWrapper = styled.div`
-  width: 240px;
+  flex-grow: 1;
+  flex-basis: 240px;
   padding: 8px;
 `
 
