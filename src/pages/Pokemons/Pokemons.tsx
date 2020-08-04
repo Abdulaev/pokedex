@@ -3,7 +3,6 @@ import { RouteChildrenProps } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import { autorun } from 'mobx'
 import { stringifyRoute } from 'common/helpers'
-import { Loader } from 'common/components'
 import { ROUTES } from 'common/enums'
 import { PokemonList } from './components/PokemonList/PokemonList'
 import { FooterBar } from './components/FooterBar/FooterBar'
@@ -36,14 +35,14 @@ const PokemonsPage: React.FC<RouteChildrenProps> = observer(({ location, history
   return (
     <>
       <FilterBar filterByName={filterPokemonsByName} filterByType={filterPokemonsByType} />
-      {store.loading ? <Loader /> : <PokemonList pokemons={store.pokemons} />}
+      {!store.error && <PokemonList pokemons={store.pokemons} loading={store.loading} />}
       {store.error && <p>Something went wrong... Please reload the page</p>}
       {store.pokemons.length > 0 && !store.loading && (
         <FooterBar
           onPageLimitChange={pagination.changePageLimit}
           onPaginationChange={pagination.changePageNumber}
           currentPage={Number(pagination.pageNumber)}
-          totalPages={950}
+          totalPages={store.pokemonsCount}
           pageLimit={pagination.pageLimit}
         />
       )}

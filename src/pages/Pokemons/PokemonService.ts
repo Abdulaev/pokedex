@@ -15,7 +15,12 @@ export class PokemonService {
       },
       body
     ).then(pokemons => {
-      return Promise.all(pokemons.results.map(pokemon => Api.get<Pokemon, {}>(pokemon.url)))
+      return Promise.all(pokemons.results.map(pokemon => Api.get<Pokemon, {}>(pokemon.url))).then(
+        res => ({
+          entities: res,
+          count: pokemons.count
+        })
+      )
     })
   }
 }

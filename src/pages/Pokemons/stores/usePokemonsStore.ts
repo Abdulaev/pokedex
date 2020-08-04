@@ -18,12 +18,14 @@ export const createPokemonsStore = (props: PokemonApiTypes.RequestBody) => ({
   loadPokemons(params: PokemonApiTypes.RequestParams) {
     this.loading = true
     PokemonService.getPokemons(params, { signal: props.signal })
-      .then(pokemons => {
-        this.pokemons = pokemons
-        this.initialPokemons = pokemons
+      .then(({ entities, count }) => {
+        this.pokemonsCount = count
+        this.pokemons = entities
+        this.initialPokemons = entities
         this.error = false
       })
       .catch(() => {
+        console.log('error')
         this.error = true
       })
       .finally(() => {

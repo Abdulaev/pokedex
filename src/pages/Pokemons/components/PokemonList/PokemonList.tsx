@@ -1,7 +1,9 @@
 import React, { useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 import EmptyImg from 'assets/images/empty.png'
-import { Card, Image, Tag } from 'common/components'
+import {
+ Card, Image, Tag, Loader 
+} from 'common/components'
 import { stringifyRoute } from 'common/helpers'
 import { ROUTES, TYPE_COLORS } from 'common/enums'
 import { Pokemon } from '@types'
@@ -11,14 +13,17 @@ import {
 
 interface PokemonListProps {
   pokemons: Pokemon[]
+  loading: boolean
 }
 
-export const PokemonList: React.FC<PokemonListProps> = ({ pokemons }) => {
+export const PokemonList: React.FC<PokemonListProps> = ({ pokemons, loading }) => {
   const history = useHistory()
 
   const handleRedirect = useCallback((id: number) => {
     history.push(stringifyRoute(ROUTES.pokemon, { id: String(id) }, {}))
   }, [])
+
+  if (loading) return <Loader />
 
   return (
     <Container>
