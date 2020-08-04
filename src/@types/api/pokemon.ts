@@ -10,7 +10,3 @@ export interface LoadPokemonsResult {
   count: number
   results: TRemoteSource[]
 }
-
-export interface RequestBody {
-  signal: AbortSignal
-}

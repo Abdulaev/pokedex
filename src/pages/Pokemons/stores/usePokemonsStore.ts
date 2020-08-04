@@ -4,9 +4,7 @@ import { reaction } from 'mobx'
 import { Pokemon, PokemonApiTypes } from '@types'
 import { PokemonService } from '../PokemonService'
 
-const abortController = new AbortController()
-
-export const createPokemonsStore = (props: PokemonApiTypes.RequestBody) => ({
+export const createPokemonsStore = () => ({
   pokemonsCount: null,
   pokemons: [] as Pokemon[],
   initialPokemons: [] as Pokemon[],
@@ -17,7 +15,7 @@ export const createPokemonsStore = (props: PokemonApiTypes.RequestBody) => ({
   },
   loadPokemons(params: PokemonApiTypes.RequestParams) {
     this.loading = true
-    PokemonService.getPokemons(params, { signal: props.signal })
+    PokemonService.getPokemons(params)
       .then(({ entities, count }) => {
         this.pokemonsCount = count
         this.pokemons = entities
@@ -25,7 +23,6 @@ export const createPokemonsStore = (props: PokemonApiTypes.RequestBody) => ({
         this.error = false
       })
       .catch(() => {
-        console.log('error')
         this.error = true
       })
       .finally(() => {
@@ -37,16 +34,7 @@ export const createPokemonsStore = (props: PokemonApiTypes.RequestBody) => ({
 export const usePokemonsStore = (pagination: PokemonApiTypes.RequestParams) => {
   const observedPagination = useAsObservableSource(pagination)
 
-  const store = useLocalStore(createPokemonsStore, {
-    signal: abortController.signal
-  })
-
-  useEffect(
-    () => () => {
-      abortController.abort()
-    },
-    []
-  )
+  const store = useLocalStore(createPokemonsStore)
 
   useEffect(
     () =>

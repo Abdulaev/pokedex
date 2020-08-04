@@ -49,7 +49,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = ({ pokemon, abiliti
               Object.values(ability.effect_entries).find(effect => effect.language.name === EN_LANG)
             )
             .map((i, idx) => (
-              <Group>
+              <Group key={abilities[idx].name}>
                 <Description>
                   Name:
                   {abilities[idx].name}
@@ -60,7 +60,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = ({ pokemon, abiliti
             ))}
           <Title>Stats:</Title>
           {pokemon.stats.map(i => (
-            <Description>{`${i.stat.name} = ${i.base_stat}`}</Description>
+            <Description key={i.stat.name}>{`${i.stat.name} = ${i.base_stat}`}</Description>
           ))}
           <Title>Types:</Title>
           <Tags>
