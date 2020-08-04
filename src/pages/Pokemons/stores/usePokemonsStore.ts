@@ -2,7 +2,7 @@ import { useAsObservableSource, useLocalStore } from 'mobx-react'
 import { useEffect } from 'react'
 import { reaction } from 'mobx'
 import { Pokemon, PokemonApiTypes } from '@types'
-import { PokemonService } from '../PokemonService'
+import { PokemonsService } from '../Pokemons.service'
 
 export const createPokemonsStore = () => ({
   pokemonsCount: null,
@@ -15,7 +15,7 @@ export const createPokemonsStore = () => ({
   },
   loadPokemons(params: PokemonApiTypes.RequestParams) {
     this.loading = true
-    PokemonService.getPokemons(params)
+    PokemonsService.getPokemons(params)
       .then(({ entities, count }) => {
         this.pokemonsCount = count
         this.pokemons = entities

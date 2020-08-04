@@ -1,4 +1,5 @@
 import { stringify as stringifyQuery } from 'query-string'
+import { REQUEST_METHODS } from 'common/enums'
 
 interface Params {
   [key: string]: string | number
@@ -14,29 +15,22 @@ const checkStatus = async <T>(response: Response): Promise<T> => {
   throw new Error()
 }
 
-export default class Api {
-  private readonly baseUrl: string
+class Api {
+  private baseUrl: string = process.env.REACT_APP_URL
 
-  constructor(baseUrl: string) {
-    this.baseUrl = baseUrl
+  changeUrl(url: string) {
+    this.baseUrl = url
   }
 
-  static async get<T, U>(url: string, params?: Params, body?: U): Promise<T> {
+  get<T, U>(url: string, params?: Params, body?: U): Promise<T> {
+    return this.request<T, U>(this.baseUrl + url, REQUEST_METHODS.get, params, body)
+  }
+
+  async request<T, U>(url: string, method: REQUEST_METHODS, params?: Params, body?: U): Promise<T> {
     const query = stringifyQuery(params)
     const request = new Request(url + (query ? `?${query}` : ''), {
       ...body,
-      headers: new Headers({
-        Accept: 'application/json'
-      })
-    })
-    const response = await fetch(request)
-    return checkStatus<T>(response)
-  }
-
-  async get<T, U>(url: string, params?: Params, body?: U): Promise<T> {
-    const query = stringifyQuery(params)
-    const request = new Request(this.baseUrl + url + (query ? `?${query}` : ''), {
-      ...body,
+      method,
       headers: new Headers({
         Accept: 'application/json'
       })
@@ -46,3 +40,5 @@ export default class Api {
     return checkStatus<T>(response)
   }
 }
+
+export default new Api()

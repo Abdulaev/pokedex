@@ -4,7 +4,7 @@ import {
 
 export const useOutsideClick = <T extends HTMLElement>(
   onOutsideClick: () => void
-): LegacyRef<T | undefined> => {
+): LegacyRef<T> => {
   const ref = useRef<T>()
 
   const handleOutsideClick = useCallback(

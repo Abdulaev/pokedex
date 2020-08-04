@@ -1,7 +1,6 @@
 import { Ability, Pokemon } from '@types'
 import Api from 'core/api'
-
-const ApiBase = new Api(process.env.REACT_APP_URL)
+import { REQUEST_METHODS } from 'common/enums'
 
 const pokemontUrl = 'pokemon/'
 
@@ -20,14 +19,14 @@ export const createPokemonStore = (): PokemonStoreType => ({
   error: false,
   loadPokemon(id: string) {
     this.loading = true
-    ApiBase.get<Pokemon, {}>(pokemontUrl + id)
+    Api.get<Pokemon, {}>(pokemontUrl + id)
       .then(pokemon => {
         this.pokemon = pokemon
-        return Promise.all(pokemon.abilities.map(i => Api.get<Ability, {}>(i.ability.url))).then(
-          abilities => {
-            this.abilities = abilities
-          }
-        )
+        return Promise.all(
+          pokemon.abilities.map(i => Api.request<Ability, {}>(i.ability.url, REQUEST_METHODS.get))
+        ).then(abilities => {
+          this.abilities = abilities
+        })
       })
       .catch(() => {
         this.pokemon = null
