@@ -22,23 +22,29 @@ export const PokemonList: React.FC<PokemonListProps> = ({ pokemons }) => {
 
   return (
     <Container>
-      {pokemons.map(pokemon => (
-        <CardWrapper key={pokemon.id}>
-          <Card
-            header={<Image src={pokemon.sprites.front_default ?? EmptyImg} />}
-            onClick={() => handleRedirect(pokemon.id)}
-          >
-            <Name>{pokemon.name}</Name>
-            <TagList>
-              {pokemon.types.map(i => (
-                <Tag key={i.slot} color={TYPE_COLORS[i.type.name]}>
-                  {i.type.name}
-                </Tag>
-              ))}
-            </TagList>
-          </Card>
-        </CardWrapper>
-      ))}
+      {pokemons.length > 0 ? (
+        <>
+          {pokemons.map(pokemon => (
+            <CardWrapper key={pokemon.id}>
+              <Card
+                header={<Image src={pokemon.sprites.front_default ?? EmptyImg} />}
+                onClick={() => handleRedirect(pokemon.id)}
+              >
+                <Name>{pokemon.name}</Name>
+                <TagList>
+                  {pokemon.types.map(i => (
+                    <Tag key={i.slot} color={TYPE_COLORS[i.type.name]}>
+                      {i.type.name}
+                    </Tag>
+                  ))}
+                </TagList>
+              </Card>
+            </CardWrapper>
+          ))}
+        </>
+      ) : (
+        <h3>There is no pokemons!</h3>
+      )}
     </Container>
   )
 }

@@ -41,6 +41,10 @@ const PokemonsPage: React.FC<RouteChildrenProps> = observer(({ location, history
   )
 
   useEffect(() => {
+    if (!location.search) store.changePageLimit(20)
+  }, [location.search])
+
+  useEffect(() => {
     store.loadPokemons()
 
     return () => {

@@ -30,7 +30,7 @@ export const createPokemonsStore = (props: PokemonsStoreProps) => ({
   },
   pokemons: [] as Pokemon[],
   defaultPokemons: [] as Pokemon[],
-  loading: false,
+  loading: true,
   error: false,
   abort: new AbortController(),
   changePageLimit(newLimit: number) {

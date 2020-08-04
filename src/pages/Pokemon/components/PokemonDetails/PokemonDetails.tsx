@@ -60,12 +60,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = ({ pokemon, abiliti
             ))}
           <Title>Stats:</Title>
           {pokemon.stats.map(i => (
-            <Description>
-              {i.stat.name}
-              {' '}
-              =
-              {i.base_stat}
-            </Description>
+            <Description>{`${i.stat.name} = ${i.base_stat}`}</Description>
           ))}
           <Title>Types:</Title>
           <Tags>
